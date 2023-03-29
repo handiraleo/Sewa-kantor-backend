@@ -1,0 +1,12 @@
+input CustomerMessageRequest {
+    text: String!
+}
+input AdminMessageRequest {
+    conversationId: ID!
+    text: String!
+}
+
+type Mutation {
+    adminSendMessage(input: AdminMessageRequest!): Message
+    customerSendMessage(input: CustomerMessageRequest!): Message
+}

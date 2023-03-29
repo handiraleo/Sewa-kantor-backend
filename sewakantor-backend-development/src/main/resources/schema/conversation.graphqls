@@ -1,0 +1,8 @@
+type Conversation {
+    id: ID
+    text: String
+    senderName: String
+    senderAvatar:String
+    unreadCount:Int
+    unixTime:Int
+}

@@ -1,0 +1,49 @@
+# Exposes a URL that specifies the behaviour of this scalar.
+directive @specifiedBy(
+  # The URL that specifies the behaviour of this scalar.
+  url: String!
+) on SCALAR
+input AdminMessageRequest {
+  conversationId: ID!
+  text: String!
+}
+
+type Conversation {
+  id: ID
+  text: String
+  senderName: String
+  senderAvatar: String
+  unreadCount: Int
+  unixTime: Int
+}
+
+input CustomerMessageRequest {
+  text: String!
+}
+
+type Message {
+  id: ID
+  me: Boolean
+  text: String
+  image: String
+  isRead: Boolean
+  unixTime: Int
+}
+
+type Mutation {
+  adminSendMessage(input: AdminMessageRequest!): Message
+  customerSendMessage(input: CustomerMessageRequest!): Message
+}
+
+type Query {
+  getAllConversations: [Conversation]
+  getMessagesForCustomer: [Message]
+  getMessagesForAdmin(conversationId: ID!): [Message]
+}
+
+type Subscription {
+  conversations: [Conversation]
+  messagesForCustomer: [Message]
+  messagesForAdmin(conversationId: ID!): [Message]
+}
+

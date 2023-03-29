@@ -1,0 +1,5 @@
+type Subscription {
+#    conversations: [Conversation]
+#    messagesForCustomer: [Message]
+    messagesForAdmin(conversationId: ID!): [Message]
+}
